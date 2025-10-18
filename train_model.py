@@ -132,7 +132,7 @@ def save_model_and_scaler(model, scaler, accuracy):
 
 def main():
     """Main function to orchestrate the training process."""
-    print("🌋 Landslide Prediction Model Training")
+    print("Landslide Prediction Model Training")
     print("=" * 50)
     
     try:
@@ -146,15 +146,15 @@ def main():
         model_path, scaler_path, info_path = save_model_and_scaler(model, scaler, accuracy)
         
         print("\n" + "=" * 50)
-        print("✅ Training completed successfully!")
-        print(f"📊 Model Accuracy: {accuracy:.4f} ({accuracy*100:.2f}%)")
-        print(f"💾 Model saved to: {model_path}")
-        print(f"🔧 Scaler saved to: {scaler_path}")
-        print(f"📋 Model info saved to: {info_path}")
-        print("\n🚀 Ready to use the model in the Streamlit app!")
+        print("Training completed successfully!")
+        print(f"Model Accuracy: {accuracy:.4f} ({accuracy*100:.2f}%)")
+        print(f"Model saved to: {model_path}")
+        print(f"Scaler saved to: {scaler_path}")
+        print(f"Model info saved to: {info_path}")
+        print("\nReady to use the model in the Streamlit app!")
         
     except Exception as e:
-        print(f"❌ Error during training: {str(e)}")
+        print(f"Error during training: {str(e)}")
         raise
 
 if __name__ == "__main__":
