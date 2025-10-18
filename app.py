@@ -106,9 +106,13 @@ def predict_landslide_risk(model, scaler, rainfall, soil_moisture):
 
 def classify_risk_level(probability):
     """Classify risk level based on probability."""
-    if probability < 0.4:
+    # Debug: Print the actual probability
+    print(f"Debug - Actual probability: {probability:.4f}")
+    
+    # Adjusted thresholds to better capture medium risk
+    if probability < 0.3:
         return "Low", "🟢 Low Risk - Safe"
-    elif 0.4 <= probability < 0.7:
+    elif 0.3 <= probability < 0.6:
         return "Medium", "🟡 Medium Risk - Moderate, Stay Alert"
     else:
         return "High", "🔴 High Risk - ⚠️ High Landslide Probability! Take Precautions."
@@ -125,14 +129,14 @@ def create_risk_visualization(probability, risk_level):
             'axis': {'range': [None, 100]},
             'bar': {'color': "darkblue"},
             'steps': [
-                {'range': [0, 40], 'color': "lightgreen"},
-                {'range': [40, 70], 'color': "yellow"},
-                {'range': [70, 100], 'color': "red"}
+                {'range': [0, 30], 'color': "lightgreen"},
+                {'range': [30, 60], 'color': "yellow"},
+                {'range': [60, 100], 'color': "red"}
             ],
             'threshold': {
                 'line': {'color': "red", 'width': 4},
                 'thickness': 0.75,
-                'value': 70
+                'value': 60
             }
         }
     ))
@@ -171,9 +175,9 @@ def main():
     st.sidebar.write("• **Rainfall (mm)**")
     st.sidebar.write("• **Soil Moisture (%)**")
     st.sidebar.write("• **Risk Classification:**")
-    st.sidebar.write("  - 🟢 Low: < 40%")
-    st.sidebar.write("  - 🟡 Medium: 40-70%")
-    st.sidebar.write("  - 🔴 High: > 70%")
+    st.sidebar.write("  - 🟢 Low: < 30%")
+    st.sidebar.write("  - 🟡 Medium: 30-60%")
+    st.sidebar.write("  - 🔴 High: > 60%")
     
     # Main content
     col1, col2 = st.columns([1, 1])
@@ -224,6 +228,9 @@ def main():
                     value=f"{probability:.1%}",
                     delta=f"{probability*100:.1f}%"
                 )
+                
+                # Debug information
+                st.info(f"Debug: Raw probability = {probability:.4f} ({probability*100:.2f}%)")
                 
                 # Store results in session state for visualization
                 st.session_state.prediction_results = {
