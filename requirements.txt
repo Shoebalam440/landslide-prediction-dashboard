@@ -1,15 +1,6 @@
-<<<<<<< HEAD
 streamlit>=1.28.0
 pandas>=1.5.0
 numpy>=1.24.0
 scikit-learn>=1.3.0
 joblib>=1.3.0
 plotly>=5.15.0
-=======
-streamlit>=1.28.0
-pandas>=1.5.0
-numpy>=1.24.0
-scikit-learn>=1.3.0
-joblib>=1.3.0
-plotly>=5.15.0
->>>>>>> 77d29739f869e366df0d535a5aee9c1f28450a86
